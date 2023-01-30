@@ -1,6 +1,8 @@
 import  { Component } from "react";
 import './App.css';
-
+import "./components/card-list/CardList"
+import CardList from "./components/card-list/CardList";
+import SearchBox from "./components/search-bar/SearchBox";
 
 class App extends Component{
   constructor(){
@@ -18,9 +20,6 @@ class App extends Component{
     .then((users) => this.setState(() =>{
       return {monsters: users}
     },
-    () =>{
-      console.log(this.state);
-    }
     ))
   }
 
@@ -40,13 +39,8 @@ class App extends Component{
 
   return (
       <div className="App">
-        <input type="search" className="search-box" placeholder="Search Monster" onChange={this.onSearchChange}  />
-         {
-          filterMosters.map((mons) =>{
-              return <h1>{mons.name}</h1>
-          })
-         }
-
+        <SearchBox onChangeHandler={this.onSearchChange} />
+        <CardList monsters={filterMosters} /> 
       </div>
     )
   }
